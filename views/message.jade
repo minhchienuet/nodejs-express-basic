@@ -1,0 +1,7 @@
+.messages
+  each type in Object.keys(messages)
+      each message in messages[type]
+        if type == 'errors'
+          div(class="alert alert-"+type) #{message}
+        else 
+          div(class="alert alert-"+type) #{message}
