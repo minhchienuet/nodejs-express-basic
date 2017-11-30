@@ -9,8 +9,10 @@ var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
+var passport = require('passport');
+var config = require('./config/database');
 
-mongoose.connect('mongodb://127.0.0.1:27017/node_express');
+mongoose.connect(config.database);
 let db = mongoose.connection;
 
 // Checkn db ,connect
@@ -78,6 +80,17 @@ app.use(expressValidator({
 }));
 
 
+// Passport config
+require('./config/passport')(passport);
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('*', function(req, res, next) {
+  res.locals.user = req.user || null;
+  next();
+});
 
 app.use('/', index);
 app.use('/users', users);

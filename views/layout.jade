@@ -3,6 +3,7 @@ html
   head
     title= title
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css') 
   body
     nav.navbar.navbar-inverse
       .container-fluid
@@ -15,27 +16,29 @@ html
           a.navbar-brand(href='/') Home
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li.active
-              a(href='/users/login')
-                | Login 
-                span.sr-only (current)
-            li
-              a(href='/users/register')
-                | Register 
-                span.sr-only (current)
+            
             li
               a(href='#') Users
           ul.nav.navbar-nav.navbar-right
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                | Dropdown 
-                span.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') Profile
-                li.divider(role='separator')
-                li
-                  a(href='#') Log out
+            if user 
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                  | Dropdown 
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href='#') Profile
+                  li.divider(role='separator')
+                  li
+                    a(href='/users/logout') Log out
+            else 
+              li
+                a(href='/users/login')
+                  | Login 
+              li
+                a(href='/users/register')
+                  | Register 
+            
     .container
       != messages('message', locals)
       if errors
