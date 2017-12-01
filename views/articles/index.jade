@@ -28,6 +28,6 @@ block content
                 a.btn.btn-primary(href='/articles/edit/'+article._id)
                   i.fa.fa-edit
                   |  Edit
-                a.btn.btn-danger(href='#')
-                  i.fa.fa-circle
+                a.btn.btn-danger.delete-article(href='javascript:void(0)', data-id=article._id)
+                  i.fa.fa-trash-o
                   |  Delete

@@ -103,6 +103,18 @@ router.post('/edit/:id', function(req, res) {
   }
 });
 
+router.delete('/delete/:id', function(req, res) {
+  Article.findByIdAndRemove(req.params.id, function(err) {
+    if(err) {
+      console.log(err);
+      return;
+    } else {
+      res.send('Success');
+    }
+  });
+});
+
+
 function checkLogin(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
