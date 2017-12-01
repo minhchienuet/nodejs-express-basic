@@ -1,0 +1,25 @@
+extends ../layouts/master
+
+block content
+  .panel.panel-default
+    .panel-heading
+      .row
+        .col-sm-6
+          h1= title
+        .col-sm-6
+          a.btn.btn-success.pull-right(href='articles/create', role='button')
+            i.fa.fa-plus
+            |  Add Article
+    .panel-body 
+      table.table.table-bordered.table-hover.table-striped
+        thead
+          tr
+            th Title
+            th Content
+            th Author
+        tbody
+          each article, i in articles
+            tr
+              td #{article.title}
+              td #{article.content}
+              td #{article.author}

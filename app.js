@@ -27,16 +27,19 @@ db.on('error', function(err) {
 // Routes
 var index = require('./routes/index');
 var users = require('./routes/users');
+var articles = require('./routes/articles');
 
 var app = express();
 
 // Models
 var User = require('./models/user');
+var Article = require('./models/article');
 
 // view engine setup
 app.set('views', [path.join(__dirname, 'views'),
                   path.join(__dirname, 'views/layouts'), 
-                  path.join(__dirname, 'views/users')]);
+                  path.join(__dirname, 'views/users'),
+                  path.join(__dirname, 'views/articles')]);
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -93,8 +96,10 @@ app.get('*', function(req, res, next) {
   next();
 });
 
+// Routes
 app.use('/', index);
 app.use('/users', users);
+app.use('/articles', articles);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
