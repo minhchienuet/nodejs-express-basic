@@ -9,7 +9,17 @@ var User = require('../models/user');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('users/index');
+  User.find({}, function(err, users) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(users);
+      res.render('users/index', {
+        title: 'User List',
+        users:users
+      });    
+    }
+  });
 });
 
 
