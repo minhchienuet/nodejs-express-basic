@@ -1,14 +1,14 @@
 extends ../layouts/master
 
 block content
-  h1 Create Article
+  h1= title
   form(action='/articles/create', method='post')
     .form-group
       label Title
       input.form-control(type='text', name='title')
     .form-group
       label Content
-      input.form-control(type='text', name='content')
+      textarea.form-control(name='content')
     .form-group
       label Author
       input.form-control(type='text', name='author')

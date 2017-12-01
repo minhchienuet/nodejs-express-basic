@@ -14,12 +14,20 @@ block content
       table.table.table-bordered.table-hover.table-striped
         thead
           tr
-            th Title
-            th Content
-            th Author
+            th.text-center Title
+            th.text-center Content
+            th.text-center Author
+            th.text-center Action
         tbody
           each article, i in articles
             tr
               td #{article.title}
               td #{article.content}
               td #{article.author}
+              td
+                a.btn.btn-primary(href='/articles/edit/'+article._id)
+                  i.fa.fa-edit
+                  |  Edit
+                a.btn.btn-danger(href='#')
+                  i.fa.fa-circle
+                  |  Delete
