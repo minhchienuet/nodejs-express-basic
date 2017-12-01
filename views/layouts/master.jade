@@ -16,9 +16,9 @@ html
           a.navbar-brand(href='/') Home
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav
-            
-            li
-              a(href='/users') Users
+            if user
+              li
+                a(href='/users') Users
           ul.nav.navbar-nav.navbar-right
             if user 
               li.dropdown

@@ -8,7 +8,7 @@ var passport = require('passport');
 var User = require('../models/user');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', checkLogin, function(req, res, next) {
   User.find({}, function(err, users) {
     if(err) {
       console.log(err);
@@ -97,5 +97,14 @@ router.get('/logout', function(req, res) {
   req.flash('success', 'You are logged out');
   res.redirect('/users/login');
 });
+
+function checkLogin(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    req.flash('danger', 'Please Login');
+    res.redirect('users/login');
+  }
+}
 
 module.exports = router;
