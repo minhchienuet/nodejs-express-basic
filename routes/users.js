@@ -9,12 +9,12 @@ var User = require('../models/user');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('User List');
+  res.render('users/index');
 });
 
 
 router.get('/register', function(req, res) {
-  res.render('register');
+  res.render('users/register');
 });
 
 router.post('/register', function(req, res) {
@@ -38,7 +38,7 @@ router.post('/register', function(req, res) {
     //   req.flash('errors', m.msg);
     // });
 
-    res.render('register', {errors:errors});
+    res.render('users/register', {errors:errors});
   } else {
     var newUser = new User({
       name:name,
@@ -69,7 +69,7 @@ router.post('/register', function(req, res) {
 
 
 router.get('/login', function(req, res) {
-  res.render('login');
+  res.render('users/login');
 });
 
 
